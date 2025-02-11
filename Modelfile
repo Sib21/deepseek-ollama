@@ -1,0 +1,25 @@
+# Use deepseek-r1:latest as the base model
+
+FROM deepseek-r1:latest
+
+# Adjust model parameters
+
+PARAMETER temperature 0.7
+
+PARAMETER num_ctx 3072
+
+PARAMETER stop "assistant:"
+
+PARAMETER stop Result
+
+# Define model behavior
+
+SYSTEM " "
+
+# Customize the conversation template
+
+TEMPLATE """{{ if .System }}Advisor: {{ .System }}{{ end }}
+
+Client: {{ .Prompt }}
+
+Advisor: {{ .Response }}"""
